@@ -1,1 +1,1 @@
-Music Tonality Project
+Music Tonality Project with Minimalism
