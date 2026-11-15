@@ -1,0 +1,12 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/3544663784_1666247433_223132457.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_3170747647_3737248058.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_2574153202_1639049300.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_1136588239_3408781403.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_1972190571_2160713804.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_1376547845_308509360.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_4005638576_1038223533.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_343643106_4172549884.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_424762025_193817489.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_397174037_3589586129.mp4'
+file 'file:/Users/victore./Math 111A Project/src/manimations/media/videos/__init__/1080p60/partial_movie_files/MusicalStaff/260329756_4247107814_1666703220.mp4'

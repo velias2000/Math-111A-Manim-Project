@@ -1,57 +1,110 @@
+
 from manim import *
+import numpy as np
+import wave
+import os
 
-class Staff(VGroup):
-    def __init__(self, length=10, line_spacing=0.25, **kwargs):
-        super().__init__(**kwargs)
-        self.line_spacing = line_spacing
-        
-        # Create the 5 horizontal staff lines (bottom = 0, top = 4)
-        self.lines = VGroup(*[
-            Line(LEFT * length / 2, RIGHT * length / 2, stroke_width=2)
-            for _ in range(5)
-        ])
-        self.lines.arrange(UP, buff=line_spacing)
-        
-        # Add start and end barlines
-        left_bar = Line(self.lines[0].get_start(), self.lines[-1].get_start(), stroke_width=3)
-        right_bar = Line(self.lines[0].get_end(), self.lines[-1].get_end(), stroke_width=4)
-        
-        self.add(self.lines, left_bar, right_bar)
-
-    def get_pitch_y(self, step):
-        """
-        Returns the Y-coordinate for a given staff step:
-        0 = bottom line (E4 in treble)
-        1 = first space (F4)
-        2 = second line (G4)
-        ...
-        8 = top line (F5)
-        """
-        bottom_y = self.lines[0].get_y()
-        return bottom_y + step * (self.line_spacing / 2)
-
-class MusicStaffScene(Scene):
+class MusicalStaff(Scene):
     def construct(self):
-        # Initialize the staff
-        staff = Staff(length=10, line_spacing=0.3)
-        
-        # Add a simple clef label (or replace with an SVGMobject treble clef)
-        clef = Text("𝄞", font_size=96).move_to(staff.lines[2].get_left() + RIGHT * 0.6)
-        
-        # Place a notehead on the 2nd line (G4, step=2)
-        note = Ellipse(width=0.35, height=0.24, color=WHITE, fill_opacity=1)
-        note.rotate(20 * DEGREES)
-        note.move_to([staff.get_left()[0] + 2.2, staff.get_pitch_y(2), 0])
-        
-        # Add a stem to the note
-        stem = Line(
-            note.get_right() + LEFT * 0.02,
-            note.get_right() + LEFT * 0.02 + UP * 1.0,
-            stroke_width=2.5
-        )
-        quarter_note = VGroup(note, stem)
+        # Musical staff
+        spacing = 0.25
+        staff = VGroup(*[
+            Line(
+                LEFT * 5 + UP * (i * spacing),
+                RIGHT * 5 + UP * (i * spacing),
+                color=WHITE
+            )
+            for i in range(-2, 3)
+        ])
 
-        # Animate the scene
-        self.play(Create(staff), Write(clef))
-        self.play(FadeIn(quarter_note, shift=DOWN * 0.2))
+        title = Text("C Major Scale", font_size=40)
+        title.to_edge(UP)
+
+        self.play(Write(title), Create(staff))
+
+        # Treble clef (requires a music font)
+        clef = Text("𝄞", font="Bravura", font_size=95)
+        clef.move_to(LEFT * 4.4 + UP * 0.1)
+        self.play(FadeIn(clef))
+
+        # Notes: name, frequency, staff position
+        # Bottom line E4 is position 0
+        notes = [
+            ("C4", 261.63, -2),
+            ("D4", 293.66, -1),
+            ("E4", 329.63, 0),
+            ("F4", 349.23, 1),
+            ("G4", 392.00, 2),
+            ("A4", 440.00, 3),
+            ("B4", 493.88, 4),
+            ("C5", 523.25, 5),
+        ]
+
+        os.makedirs("sounds", exist_ok=True)
+        sample_rate = 44100
+        duration = 0.6
+
+        for i, (name, freq, pos) in enumerate(notes):
+            x = -3.2 + i * 0.85
+            y = -0.5 + pos * (spacing / 2)
+
+            # Note head
+            head = Ellipse(
+                width=0.3,
+                height=0.2,
+                color=WHITE,
+                fill_opacity=1
+            )
+            head.rotate(-PI / 6)
+            head.move_to([x, y, 0])
+
+            # Stem
+            stem = Line(
+                [x + 0.13, y, 0],
+                [x + 0.13, y + 0.75, 0],
+                color=WHITE
+            )
+
+            note = VGroup(head, stem)
+
+            # Ledger line for middle C
+            if name == "C4":
+                ledger = Line(
+                    [x - 0.25, y, 0],
+                    [x + 0.25, y, 0],
+                    color=WHITE
+                )
+                note.add(ledger)
+
+            # Generate audio
+            t = np.linspace(
+                0, duration,
+                int(sample_rate * duration),
+                endpoint=False
+            )
+
+            audio = 0.3 * np.sin(2 * PI * freq * t)
+
+            fade = min(1000, len(audio) // 2)
+            envelope = np.ones(len(audio))
+            envelope[:fade] = np.linspace(0, 1, fade)
+            envelope[-fade:] = np.linspace(1, 0, fade)
+            audio *= envelope
+
+            filename = f"sounds/scale_{i}.wav"
+
+            with wave.open(filename, "w") as wav:
+                wav.setnchannels(1)
+                wav.setsampwidth(2)
+                wav.setframerate(sample_rate)
+                wav.writeframes(
+                    (audio * 32767).astype(np.int16).tobytes()
+                )
+
+            self.add_sound(filename)
+            self.play(FadeIn(note), run_time=duration)
+
         self.wait(2)
+
+
+
