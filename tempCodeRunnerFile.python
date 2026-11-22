@@ -1,0 +1,66 @@
+from manim import *
+
+class ClappingMusicVisualizer(Scene):
+    def construct(self):
+        # 1. Parameters (must match audio generator)
+        bpm = 160
+        beat_dur = (60.0 / bpm) / 2.0
+        repeats_per_phase = 4
+        pattern = [1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0]
+
+        # Attach pre-generated audio at t = 0
+        self.add_sound("clapping_music.wav")
+
+        # 2. Build Concentric 12-Beat Rings
+        outer_ring = VGroup()
+        inner_ring = VGroup()
+        
+        for i in range(12):
+            # Start at top (PI/2) and move clockwise (-i * TAU / 12)
+            angle = PI / 2 - i * (TAU / 12)
+            
+            # Outer dot (Performer 1 - Fixed)
+            p1_dot = Dot(radius=0.22 if pattern[i] else 0.08)
+            p1_dot.set_color(BLUE if pattern[i] else DARK_GRAY)
+            p1_dot.move_to(2.6 * np.array([np.cos(angle), np.sin(angle), 0]))
+            outer_ring.add(p1_dot)
+
+            # Inner dot (Performer 2 - Rotating)
+            p2_dot = Dot(radius=0.22 if pattern[i] else 0.08)
+            p2_dot.set_color(ORANGE if pattern[i] else DARK_GRAY)
+            p2_dot.move_to(1.7 * np.array([np.cos(angle), np.sin(angle), 0]))
+            inner_ring.add(p2_dot)
+
+        # Beat playhead pointer at 12 o'clock
+        pointer = Triangle(color=WHITE, fill_opacity=1).scale(0.15)
+        pointer.rotate(PI).move_to(UP * 3.1)
+
+        phase_label = Text("Phase: 0 / 12", font_size=28).to_corner(UL)
+        self.add(outer_ring, inner_ring, pointer, phase_label)
+
+        # 3. Animate the 13 Phases
+        for phase in range(13):
+            shifted_pattern = pattern[phase % 12:] + pattern[:phase % 12]
+            
+            for rep in range(repeats_per_phase):
+                for step in range(12):
+                    # Highlight active beats with a quick flash/scale pulse
+                    anims = []
+                    if pattern[step]:
+                        anims.append(Indicate(outer_ring[step], color=BLUE_A, scale_factor=1.4))
+                    if shifted_pattern[step]:
+                        anims.append(Indicate(inner_ring[step], color=YELLOW, scale_factor=1.4))
+                    
+                    if anims:
+                        self.play(*anims, run_time=beat_dur)
+                    else:
+                        self.wait(beat_dur)
+
+            # Rotate inner ring counter-clockwise by 1 step (30 deg) on the final beat transition
+            if phase < 12:
+                new_label = Text(f"Phase: {(phase + 1) % 12} / 12", font_size=28).to_corner(UL)
+                self.play(
+                    Rotate(inner_ring, angle=TAU / 12, about_point=ORIGIN),
+                    Transform(phase_label, new_label),
+                    run_time=0.15
+                )
