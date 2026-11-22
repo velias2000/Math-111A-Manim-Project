@@ -60,9 +60,9 @@ class CyclicTransformations(Scene):
             run_time=1.5
         )
 
-        # -----------------------------------
-        # RHYTHMIC POSITIONS
-        # -----------------------------------
+        
+        #Rhythmic Positions 
+        
         x_positions = [-2.8, 0, 2.8]
 
         # Three pitches on the staff
@@ -94,9 +94,9 @@ class CyclicTransformations(Scene):
 
             return VGroup(head, stem)
 
-        # -----------------------------------
-        # CREATE THREE NOTES
-        # -----------------------------------
+        
+        #Create Three Notes
+        
         tokens = VGroup()
 
         for i in range(3):
@@ -129,9 +129,9 @@ class CyclicTransformations(Scene):
             )
         )
 
-        # -----------------------------------
-        # POSITION LABELS
-        # -----------------------------------
+        
+        #Position Labels
+        
         positions = VGroup(*[
             Text(
                 f"Position {i}",
@@ -143,9 +143,9 @@ class CyclicTransformations(Scene):
 
         self.play(FadeIn(positions))
 
-        # -----------------------------------
-        # ALGEBRAIC INFORMATION
-        # -----------------------------------
+        
+        #Algebraic Information
+        
         transformation = Text(
             "Iteration 0: Identity (e)",
             font_size=27
@@ -164,9 +164,9 @@ class CyclicTransformations(Scene):
 
         self.wait(1)
 
-        # -----------------------------------
-        # CYCLIC PERMUTATIONS
-        # -----------------------------------
+        
+        #Cyclic Permutations of the Notes
+        
         descriptions = [
             "Iteration 0: e",
             "Iteration 1: σ",
@@ -226,9 +226,9 @@ class CyclicTransformations(Scene):
 
             self.wait(0.8)
 
-        # -----------------------------------
-        # CONCLUSION
-        # -----------------------------------
+        
+        #Complete Musical Score with Barlines
+        
         self.play(
             FadeOut(staff),
             FadeOut(clef),
