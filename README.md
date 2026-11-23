@@ -6,7 +6,7 @@
 - **`piano_phase.py`**: The Python code that generates the animation, written with [Manim](https://www.manim.community/).
 - **`piano_phase.wav`**: The audio track used in the video.
 
-## Viewing the Animation Yourself
+### Viewing the Animation Yourself
 
 To run `piano_phase.py` and view the animation, you'll need Manim (and the Manim Sideview extension if you're using VS Code).
 
