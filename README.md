@@ -11,7 +11,7 @@ In the `piano-phase` folder:
 ## Floe
 
 In the `Floe` folder:
-
+- **`Floe by Philip Glass on Piano`**: Youtube Visual Demonstration of full musical piece
 - **`CyclicTransformations.mp4`:** Video demonstrating the animation for how cyclic groups are positioned on a musical staff.
 - **`Floe.py`:** The Python code that generates the animation, written with Manim.
 
