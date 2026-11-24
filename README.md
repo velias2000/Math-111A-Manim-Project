@@ -12,7 +12,8 @@ In the `piano-phase` folder:
 
 In the `Floe` folder:
 
-- **`Floe.py`**: This will hold the animation for how cyclic groups are positioned on a musical staff.
+- **`CyclicTransformations`:** Video demonstrating the animation for how cyclic groups are positioned on a musical staff.
+- **`Floe.py`:** The Python code that generates the animation, written with Manim.
 
 ## Viewing the Animation Yourself
 
