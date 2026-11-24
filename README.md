@@ -14,7 +14,7 @@ In the `Floe` folder:
 
 - **`Floe.py`**: This will hold the animation for how cyclic groups are positioned on a musical staff.
 
-### Viewing the Animation Yourself
+## Viewing the Animation Yourself
 
 To run and view the animations, you'll need Manim (and the Manim Sideview extension if you're using VS Code).
 
