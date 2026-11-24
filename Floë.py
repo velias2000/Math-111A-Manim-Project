@@ -11,9 +11,9 @@ class CyclicTransformations(Scene):
         WHITE_INK = "#F1F2F4"
         STAFF_COLOR = GRAY_B
         NOTE_COLORS = [BLUE, GREEN, YELLOW]
-
         
-        #Title
+        
+        #Title for the Scene
         
         title = Text(
             "Floe — Philip Glass (1982)",
