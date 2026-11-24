@@ -21,3 +21,11 @@ manim -pqh piano_phase.py PianoPhase
 ```
 
 ##
+Floe
+
+In the Floe folder: 
+- ** Floe.py ** : This will hold the animation for how cyclic groups are positioned on a musical staff
+
+## Viewing the Animation and Running on VS Code 
+
+To run 'Floe.py and view the animation, Manim will have to be installed (in addition to Manim Sideview)
