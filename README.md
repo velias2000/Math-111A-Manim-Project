@@ -8,24 +8,21 @@ In the `piano-phase` folder:
 - **`piano_phase.py`**: The Python code that generates the animation, written with [Manim](https://www.manim.community/).
 - **`piano_phase.wav`**: The audio track used in the video.
 
+## Floe
+
+In the `Floe` folder:
+
+- **`Floe.py`**: This will hold the animation for how cyclic groups are positioned on a musical staff.
+
 ### Viewing the Animation Yourself
 
-To run `piano_phase.py` and view the animation, you'll need Manim (and the Manim Sideview extension if you're using VS Code).
+To run and view the animations, you'll need Manim (and the Manim Sideview extension if you're using VS Code).
 
 1. **Install Manim:** Follow the official installation guide: https://docs.manim.community/en/stable/installation.html
 2. **Install VS Code:** If you don't already have it, install at https://code.visualstudio.com/download
 3. **Install the Manim Sideview extension:** In VS Code, open the Extensions tab, search for "Manim Sideview", and install it
-4. **Run `piano_phase.py`:** In VS Code, use the Manim Sideview panel to render and preview the animation next to your code. Or, you can run the following in your terminal:
+4. **Run the Piano Phase animation:** In VS Code, open `piano_phase.py`, use the Manim Sideview panel to render and preview the animation next to your code. Or, you can run the following in your terminal:
 ```bash
 manim -pqh piano_phase.py PianoPhase
 ```
-
-##
-Floe
-
-In the Floe folder: 
-- ** Floe.py ** : This will hold the animation for how cyclic groups are positioned on a musical staff
-
-## Viewing the Animation and Running on VS Code 
-
-To run 'Floe.py and view the animation, Manim will have to be installed (in addition to Manim Sideview)
+5. **Run the Floe animation:** In VS Code, open `Floe.py`, use the Manim Sideview panel to render and preview the animation next to your code.
