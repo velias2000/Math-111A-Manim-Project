@@ -2,6 +2,8 @@
 
 ## Piano Phase
 
+In the `piano-phase` folder:
+
 - **`PianoPhase.mp4`**: The finished video of the Piano Phase animation, with sound. You can download and play it directly, with no setup needed.
 - **`piano_phase.py`**: The Python code that generates the animation, written with [Manim](https://www.manim.community/).
 - **`piano_phase.wav`**: The audio track used in the video.
